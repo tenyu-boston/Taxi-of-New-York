@@ -1,0 +1,12 @@
+# First Plot
+df_pick_location = df.groupby(['PULocationID'])['fare_amount','RatecodeID'].sum().reset_index()
+df_pick_location['average_fare'] = df_pick_location['fare_amount']/df_pick_location['RatecodeID']
+df_pick_location.head()
+x = df_pick_location['PULocationID']
+y = df_pick_location['average_fare']
+plt.plot(x, y)
+plt.xlabel('Pick up location')
+plt.ylabel('Average fare spent')
+from pylab import rcParams
+rcParams['figure.figsize'] = 25, 8
+plt.show()
