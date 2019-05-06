@@ -13,13 +13,14 @@ plt.show()
 
 
 # Second plot
-df_trip = df.groupby(['PULocationID'])['RatecodeID','passenger_count'].sum().reset_index()
-df_trip['average_pax'] = df_trip['passenger_count']/df_trip['RatecodeID']
+# Origian and average tip
+df_trip = df.groupby(['PULocationID'])['RatecodeID','tip_amount','trip_distance'].sum().reset_index()
+df_trip['average_tip_per_mile'] = df_trip['trip_distance']/df_trip['tip_amount']
 x = df_trip['PULocationID']
-y = df_trip['average_pax']
+y = df_trip['average_tip_per_mile']
 plt.plot(x, y)
 plt.xlabel('Pick up location')
-plt.ylabel('Average baorded passngers')
+plt.ylabel('Average tips per mile')
 from pylab import rcParams
 rcParams['figure.figsize'] = 25, 8
 plt.show()
