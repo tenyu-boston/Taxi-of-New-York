@@ -10,3 +10,16 @@ plt.ylabel('Average fare spent')
 from pylab import rcParams
 rcParams['figure.figsize'] = 25, 8
 plt.show()
+
+
+# Second Plot
+df_trip = df.groupby(['PULocationID'])['RatecodeID','trip_distance'].sum().reset_index()
+df_trip['average_trip'] = df_trip['trip_distance']/df_trip['RatecodeID']
+x = df_trip['PULocationID']
+y = df_trip['average_trip']
+plt.plot(x, y)
+plt.xlabel('Pick up location')
+plt.ylabel('Average trip distance (miles)')
+from pylab import rcParams
+rcParams['figure.figsize'] = 25, 8
+plt.show()
